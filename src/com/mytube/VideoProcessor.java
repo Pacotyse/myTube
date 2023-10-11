@@ -16,7 +16,7 @@ public class VideoProcessor {
     public void process(Video video) {
         encoder.encode(video);
         database.store(video);
-        notificationService.sendEmail(video.getUser());
+        notificationService.notify(video.getUser());
     }
 }
 
