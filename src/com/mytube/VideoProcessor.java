@@ -6,10 +6,14 @@ public class VideoProcessor {
     }
 
     private VideoEncoder encoder;
+
+    public VideoProcessor(VideoDatabase database) {
+        this.database = database;
+    }
+
+    private VideoDatabase database;
     public void process(Video video) {
         encoder.encode(video);
-
-        var database = new VideoDatabase();
         database.store(video);
 
         var emailService = new EmailService();
