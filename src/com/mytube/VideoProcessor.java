@@ -12,11 +12,15 @@ public class VideoProcessor {
     }
 
     private VideoDatabase database;
+
+    public VideoProcessor(EmailService emailService) {
+        this.emailService = emailService;
+    }
+
+    private EmailService emailService;
     public void process(Video video) {
         encoder.encode(video);
         database.store(video);
-
-        var emailService = new EmailService();
         emailService.sendEmail(video.getUser());
     }
 }
